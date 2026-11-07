@@ -20,7 +20,7 @@ export default function QuizPage() {
     return (
       <section><div className="container">
         <h1>Coming Soon — Join the Waitlist</h1>
-        <p>{waitlistFor} routines are coming soon. Join the email waitlist and get <strong>15% off your first household order</strong> — the offer is owner-configured and OFF until the owner sets a code and expiry, so no code is shown here yet.</p>
+        <p>{waitlistFor} routines are coming soon. Join the email waitlist and get <strong>15% off your first household order</strong>.</p>
         <HairLetterForm source={`Quiz waitlist — ${waitlistFor}`} />
         <p><button className="btn secondary" onClick={() => setWaitlistFor(null)}>← Back to the quiz</button></p>
       </div></section>
@@ -36,7 +36,7 @@ export default function QuizPage() {
         <div className="card"><h2>Featured hero — Scalp-Resurfacing &amp; Growth Serum</h2>
           <p>{serum?.description}</p>
           <p className="price soon">Price coming soon</p>
-          <p>In Development — Join Waitlist. The $38 target price is a target only and never appears as a buyable price.</p>
+          <p>In Development — Join Waitlist.</p>
           <p><Link href="/products/scalp-resurfacing-growth-serum">View the serum →</Link></p>
         </div>
         <p>Who it is for: {who}. Scalp: {answers.q2}. Density: {answers.q3}. Routine: {answers.q4}.</p>

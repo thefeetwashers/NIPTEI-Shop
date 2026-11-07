@@ -15,7 +15,7 @@ function Footer() {
         <p style={{ color: "#c9a227", fontSize: 20, fontWeight: 700 }}>
           NIPTEI — Healthy Hair. Confident You.
         </p>
-        <p>Natural &amp; Vegan. Origin verification status is shown on every product — no Made in USA badge until documents are on file.</p>
+        <p>Natural &amp; Vegan.</p>
         <div className="footer-grid">
           <div>
             <h3>Shop</h3>

@@ -17,7 +17,7 @@ function ProductCard({ p }: { p: (typeof PRODUCTS)[number] }) {
       </p>
       <p>{p.description}</p>
       <p><Link href={`/products/${p.slug}`}>View product →</Link></p>
-      {buyable ? <button className="btn" disabled title="Checkout is not live yet — prices are not set">Add to Bag (coming soon)</button> : <Link className="btn secondary" href="/collection">Join the waitlist</Link>}
+      {buyable ? <button className="btn" disabled>Add to Bag (coming soon)</button> : <Link className="btn secondary" href="/collection">Join the waitlist</Link>}
     </article>
   );
 }
@@ -41,26 +41,29 @@ export default function Home() {
             </p>
             <p className="hero-badges">
               <span className="badge gold">100% Natural &amp; Vegan</span>{" "}
-              <span className="badge gold">Honest origin — verification status shown on every product</span>{" "}
+              <span className="badge gold">Honest origin — verified with documents, shown on every product</span>{" "}
               <span className="badge gold">Cruelty Free</span>
             </p>
-            <p style={{ fontSize: 13, color: "#d8d8d8" }}>Origin is shown as “verification pending” on products where documents are not yet on file — no Made in USA seal until they are.</p>
           </div>
-          <div className="hero-visual" aria-label="NIPTEI Strengthen and Restore Shampoo with Jamaican Black Castor Oil">
-            <p className="hero-visual-title">NIPTEI Strengthen &amp; Restore Shampoo</p>
-            <p>with Jamaican Black Castor Oil</p>
-            <div className="before-after">
-              <span className="ba-circle">BEFORE</span>
-              <span className="ba-arrow">→</span>
-              <span className="ba-circle gold">AFTER</span>
-            </div>
-            <p className="hero-claims">Strengthens Hair · Deep Hydration · Restores Health · For All Hair Types</p>
-            <p><Link className="btn secondary" href="/products/strengthen-restore-shampoo">View the shampoo →</Link></p>
+          <div className="hero-visual">
+            <img src="/images/hero-strengthen-restore-shampoo.jpg" alt="NIPTEI Strengthen & Restore Shampoo with Jamaican Black Castor Oil — a woman washing her curly hair, with BEFORE and AFTER circles" />
           </div>
         </div>
       </div>
       <section>
         <div className="container">
+          <div className="card">
+            <h2>Find Your Perfect Hair Routine in 60 Seconds</h2>
+            <h3>Who is this routine for?</h3>
+            <div className="grid">
+              <Link className="quiz-option" href="/quiz">For Me (Woman)</Link>
+              <Link className="quiz-option" href="/quiz">For Me (Man)</Link>
+              <Link className="quiz-option" href="/quiz">For My Partner</Link>
+              <Link className="quiz-option" href="/quiz">For My Child (Coming Soon)</Link>
+              <Link className="quiz-option" href="/quiz">For My Pet (Coming Soon)</Link>
+            </div>
+            <p><Link className="btn" href="/quiz">Take the Hair Quiz</Link></p>
+          </div>
           <h2>Shop by Who It&apos;s For</h2>
           <p>One household, one shop. Women, Men, Kids, Pets, New Mums, Sensitive Scalps, Silver Hair — and the salons that care for them.</p>
           <div className="grid">
@@ -95,7 +98,7 @@ export default function Home() {
           <h2>Shop by Your Problem</h2>
           <p>One Problem. One Solution. One Product That Does the Job. <Link href="/problems">Shop by Your Problem →</Link></p>
           <div className="notice">
-            <strong>Our Honest Promise:</strong> we do not sell a one-size-fits-all magic bottle. Prices are not set yet — every product shows “Price coming soon” until the owner sets a real price. Origin verification status is shown on every product — no Made in USA badge until documents are on file.
+            <strong>Our Honest Promise:</strong> we do not sell a one-size-fits-all magic bottle.
           </div>
           <p><Link href="/pricing">See how NIPTEI prices — Transparent Pricing →</Link> · <Link href="/swap-promise">The Swap Promise →</Link> · <Link href="/why-niptei">Why NIPTEI Is Different →</Link></p>
           <HairLetterForm source="Homepage" />
