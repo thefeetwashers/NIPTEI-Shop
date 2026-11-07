@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-// integrations — honest empty state: no seeded data, nothing invented.
-// Supabase is not connected in this deployable build (NEXT_PUBLIC_SUPABASE_ANON_KEY
-// is not set), so this returns an empty list until the database is connected.
+import { INTEGRATIONS } from "@/lib/artifact-data";
+// listintegrations — verbatim from the artifact: 16 integrations, all not_connected.
 export async function GET() {
-  return NextResponse.json({ ok: true, connected: false, items: [], count: 0, note: "16 integrations, all not_connected until the owner authorizes each one." });
+  return NextResponse.json({ ok: true, count: INTEGRATIONS.length, integrations: INTEGRATIONS });
 }

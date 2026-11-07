@@ -29,27 +29,21 @@ export default function Home() {
   const scalp = productsByCollection("scalp");
   return (
     <>
-      <div className="hero">
-        <div className="container hero-split">
-          <div className="hero-copy">
-            <p className="eyebrow">NATURAL &amp; VEGAN HAIR CARE</p>
-            <h1>Grow Strong. Live Beautiful.</h1>
+      <section className="hero-artifact">
+        <div className="hero-artifact-grid">
+          <div className="hero-artifact-copy">
+            <p className="eyebrow">Natural &amp; Vegan Hair Care</p>
+            <h1>Grow Strong.<br />Live Beautiful.</h1>
             <p>Botanical hair care rooted in nature — Jamaican black castor oil, pumpkin seed and herbal infusions. No parabens, no sulfates, cruelty free.</p>
-            <p>
-              <Link className="btn" href="/quiz">Take the Hair Quiz — 60 seconds</Link>{" "}
-              <Link className="btn secondary" href="/collection">Shop all products</Link>
-            </p>
             <p className="hero-badges">
-              <span className="badge gold">100% Natural &amp; Vegan</span>{" "}
-              <span className="badge gold">Honest origin — verified with documents, shown on every product</span>{" "}
-              <span className="badge gold">Cruelty Free</span>
+              <span className="badge hero-badge-accent">🌿 100% Natural &amp; Vegan</span>{" "}
+              <span className="badge hero-badge-gold">🔎 Honest origin — verified with documents, shown on every product</span>{" "}
+              <span className="badge hero-badge-accent">🐰 Cruelty Free</span>
             </p>
           </div>
-          <div className="hero-visual">
-            <img src="/images/hero-strengthen-restore-shampoo.jpg" alt="NIPTEI Strengthen & Restore Shampoo with Jamaican Black Castor Oil — a woman washing her curly hair, with BEFORE and AFTER circles" />
-          </div>
+          <img className="hero-artifact-img" src="/images/hero-strengthen-restore-shampoo.jpg" alt="Strengthen &amp; Restore Shampoo" />
         </div>
-      </div>
+      </section>
       <section>
         <div className="container">
           <div className="card">

@@ -8,7 +8,7 @@ const LINKS = [
   ["Swaps", "/dashboard/swaps", "Swap requests. Empty until a real swap happens."],
   ["Labels Library", "/dashboard/labels", "Label proofs for suppliers — shop.niptei.com • support@niptei.com. Design proofs, not final print files."],
   ["Shipping", "/dashboard/shipping", "Dual-carrier strategy + Shipping Calculator. Estimate only."],
-  ["First Real Product Tracker", "/dashboard/tracker", "7 honest steps. Step 1 in progress (Pravada inquiry sent)."],
+  ["First Real Product Tracker", "/dashboard/tracker", "Two trackers (Hero 3, then the Serum) — 7 steps each. All steps Not started."],
 ];
 
 export default function DashboardPage() {

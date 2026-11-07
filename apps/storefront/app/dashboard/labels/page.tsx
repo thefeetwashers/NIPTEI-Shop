@@ -22,7 +22,7 @@ export default function LabelsPage() {
           <h2>{group}</h2>
           <table><thead><tr><th>Product</th><th>Label status</th><th>Supplier send</th></tr></thead><tbody>
             {slugs.map((s) => { const p = PRODUCTS.find((x) => x.slug === s); if (!p) return null; return (
-              <tr key={s}><td><Link href={`/products/${s}`}>{p.name}</Link></td><td>Design proof — not final print file · {LABEL_CONTACT_LINE}</td><td><a href={`mailto:nipteiapp@gmail.com?subject=${encodeURIComponent(`Label for ${p.name} — NIPTEI`)}&body=${encodeURIComponent(`Please print the label for ${p.name} with the contact line: ${LABEL_CONTACT_LINE}. Origin: verification pending — Made in USA only with documents on file.`)}`}>Prepare send to supplier (mailto draft — owner reviews &amp; sends)</a></td></tr>
+              <tr key={s}><td><Link href={`/products/${s}`}>{p.name}</Link></td><td>Design proof — not final print file · {LABEL_CONTACT_LINE}</td><td><a href={`mailto:nipteiapp@gmail.com?subject=${encodeURIComponent(`Label for ${p.name} — NIPTEI`)}&body=${encodeURIComponent(`Please print the label for ${p.name} with the contact line: ${LABEL_CONTACT_LINE}. Origin: not yet documented — verification pending. Made in USA only with documents on file.`)}`}>Prepare send to supplier (mailto draft — owner reviews &amp; sends)</a></td></tr>
             ); })}
           </tbody></table>
         </div>

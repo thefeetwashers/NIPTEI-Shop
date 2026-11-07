@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# Build output
+.next/
+out/
+dist/
+build/
+
+# Environment — NEVER commit real keys
+.env
+.env.local
+.env.*.local
+
+# Logs / OS
+*.log
+.DS_Store

@@ -51,6 +51,12 @@ nav.main{align-items:center;flex-wrap:wrap}
 .nav-menu{position:absolute;top:100%;left:0;background:#111;border:1px solid var(--gold);border-radius:6px;padding:8px;min-width:180px;z-index:20}
 .nav-menu a{display:block;color:#fff;padding:6px 8px;font-size:14px}
 .nav-menu a:hover{color:var(--gold-light)}
+.nav-menu{min-width:300px;max-width:min(92vw,360px)}
+.nav-item-title{display:block;font-weight:700;font-size:14px}
+.nav-item-desc{display:block;font-size:12px;line-height:1.45;opacity:.85;margin-top:2px}
+.nav-item-badge{display:inline-block;font-size:11px;font-weight:700;background:#f3e9c8;color:#5c4a00;border-radius:999px;padding:2px 8px;margin-top:4px}
+/* "More" sits at the right edge: open its menu leftwards so it never overflows the viewport */
+nav.main .nav-dropdown:last-of-type .nav-menu{left:auto;right:0}
 @media (max-width:700px){
   .header-row{flex-wrap:wrap}
   .brand{font-size:22px}
@@ -59,19 +65,21 @@ nav.main{align-items:center;flex-wrap:wrap}
   .hero h1{font-size:32px}
   body{overflow-x:hidden}
 }
-/* Hero — split, matching the artifact */
-.eyebrow{letter-spacing:3px;font-size:13px;color:var(--gold-light);font-weight:700;font-family:Arial,sans-serif}
-.hero-split{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;text-align:left}
-.hero-copy h1{font-size:52px}
+/* Hero — exact artifact section: rounded bordered surface, text left, image right */
+.hero-artifact{overflow:hidden;border-radius:8px;border:1px solid #e5ddd0;background:#fff;margin:24px auto;max-width:1100px}
+.hero-artifact-grid{display:grid;grid-template-columns:1fr 1fr}
+.hero-artifact-copy{display:flex;flex-direction:column;justify-content:center;padding:24px}
+@media (min-width:640px){.hero-artifact-copy{padding:40px}}
+.hero-artifact-copy .eyebrow{text-transform:uppercase;letter-spacing:.25em;font-size:12px;color:var(--gold);font-weight:700;font-family:Arial,sans-serif}
+.hero-artifact-copy h1{font-size:36px;font-weight:600;line-height:1.15;margin:12px 0 0;color:#1a1a1a}
+@media (min-width:640px){.hero-artifact-copy h1{font-size:48px}}
+.hero-artifact-copy p{font-size:16px;line-height:1.6;color:var(--grey);max-width:28rem;margin:16px 0 0}
+.hero-artifact-copy .hero-badges{margin:24px 0 0;display:flex;flex-wrap:wrap;gap:8px}
 .hero-badges .badge{margin:2px}
-.hero-visual{border:1px solid var(--gold);border-radius:12px;overflow:hidden;line-height:0}
-.hero-visual img{display:block;width:100%;height:100%;object-fit:cover;object-position:right center}
-.before-after{display:flex;align-items:center;justify-content:center;gap:12px;margin:20px 0}
-.ba-circle{width:90px;height:90px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-family:Arial,sans-serif}
-.ba-circle.gold{border-color:var(--gold);color:var(--gold-light)}
-.ba-arrow{font-size:24px;color:var(--gold)}
-.hero-claims{font-size:14px;color:#ddd}
-@media (max-width:700px){.hero-split{grid-template-columns:1fr}}
+.badge.hero-badge-accent{background:#e6f2ec;color:#0f5c46;padding:6px 12px;font-size:12px;font-weight:600}
+.badge.hero-badge-gold{background:#f3e9c8;color:#5c4a00;padding:6px 12px;font-size:12px;font-weight:600}
+.hero-artifact-img{display:block;width:100%;height:100%;max-height:420px;object-fit:cover}
+@media (max-width:700px){.hero-artifact-grid{grid-template-columns:1fr}.hero-artifact-img{max-height:420px}}
 /* Zero horizontal overflow guard: nothing on the page may force sideways scroll */
 html,body{max-width:100%;overflow-x:hidden}
 img{max-width:100%;height:auto}

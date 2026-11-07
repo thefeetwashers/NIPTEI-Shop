@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-// manufacturer-comparison — honest empty state: no seeded data, nothing invented.
-// Supabase is not connected in this deployable build (NEXT_PUBLIC_SUPABASE_ANON_KEY
-// is not set), so this returns an empty list until the database is connected.
+import { MANUFACTURER_COMPARISON } from "@/lib/artifact-data";
+// getmanufacturercomparison — verbatim from the artifact: labelled worked example.
 export async function GET() {
-  return NextResponse.json({ ok: true, connected: false, items: [], count: 0, note: "Labelled worked example only until the owner saves real quotes. No real quote has been received yet." });
+  return NextResponse.json({ ok: true, is_example: MANUFACTURER_COMPARISON.is_example, rows: MANUFACTURER_COMPARISON.rows });
 }

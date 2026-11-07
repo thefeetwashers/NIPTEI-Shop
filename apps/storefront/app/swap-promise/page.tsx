@@ -1,7 +1,6 @@
-import { SWAP_PROMISE_TERMS, calculateSwapFee } from "@/lib/pricing";
+import { SWAP_PROMISE_TERMS } from "@/lib/pricing";
 
 export default function SwapPromisePage() {
-  const exampleFee = calculateSwapFee({ supplierShippingCharge: 2.5, carrierPostage: 4 });
   return (
     <section><div className="container">
       <p><span className="badge gold">Draft — owner to review before this promise goes live</span></p>
@@ -10,7 +9,7 @@ export default function SwapPromisePage() {
       <div className="card"><h2>Terms</h2><ul>{SWAP_PROMISE_TERMS.rules.map((r) => <li key={r}>{r}</li>)}</ul></div>
       <div className="card"><h2>Exchange Shipping Fee — exactly what it costs</h2>
         <p>Exchange Shipping Fee = Supplier Shipping Charge + Carrier Postage (USPS / UPS / FedEx), for the outbound replacement only. No profit, no markup, no buffer.</p>
-        <p>Example only: $2.50 supplier shipping + $4.00 postage = <strong>${exampleFee.toFixed(2)}</strong>. The $5.00 fee in earlier examples is an example only until real costs are entered.</p>
+        <p>Example: Exchange Shipping Fee <strong>$5.00</strong> — an example only until real supplier and postage costs are entered.</p>
         <p>You do NOT mail the old bottle back. Keep it, or pass it to a friend or family member who matches that hair profile.</p>
       </div>
       <div className="card"><h2>How a swap works</h2>

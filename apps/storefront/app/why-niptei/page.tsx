@@ -1,13 +1,24 @@
 import Link from "next/link";
 
-const TRACKER = [
-  ["1. Quote requested", "Not started", "R&D Formulation Inquiry sent to Pravada (info@pravada.com) on Nov 7, 2026 — step 1 in progress for the Scalp-Resurfacing & Growth Serum."],
-  ["2. Real quote received", "Not started", "No quote received yet."],
-  ["3. Sample ordered", "Not started", ""],
-  ["4. Sample tested on the owner’s own hair", "Not started", ""],
-  ["5. Formula safety review", "Not started", "Qualified professional review required."],
-  ["6. Real price set", "Not started", "No price until a real quote supports it."],
-  ["7. Product live", "Not started", "Hero 3 first, then the Serum."],
+const TRACKER_GROUPS: Array<[string, Array<[string, string, string]>]> = [
+  ["Hero 3 — Nourishing Hair Growth Oil · Hydrating Shampoo · Restorative Deep Conditioner (first)", [
+    ["Quote requested from Pravada / Envii / Shay", "Not started", ""],
+    ["Real quote received (MOQ, cost/unit, sample cost, lead time)", "Not started", ""],
+    ["Sample ordered", "Not started", ""],
+    ["Sample tested on the owner’s own hair", "Not started", ""],
+    ["Formula safety review by a qualified professional", "Not started", ""],
+    ["Real price set", "Not started", ""],
+    ["Product live for sale", "Not started", ""],
+  ]],
+  ["Scalp-Resurfacing & Growth Serum (after the Hero 3)", [
+    ["Quote requested from Pravada / Envii / Shay", "Not started", ""],
+    ["Real quote received (MOQ, cost/unit, sample cost, lead time)", "Not started", ""],
+    ["Sample ordered", "Not started", ""],
+    ["Sample tested on the owner’s own hair", "Not started", ""],
+    ["Formula safety review by a qualified professional", "Not started", ""],
+    ["Real price set", "Not started", ""],
+    ["Product live for sale", "Not started", ""],
+  ]],
 ];
 
 const DIFFERENTIATORS = [
@@ -26,11 +37,11 @@ const DIFFERENTIATORS = [
 const FIRSTS = [
   ["Hair Twin", "Building", "A 12-week living profile, climate / season-aware, in My NIPTEI."],
   ["Ask Someone Like Me", "Building", "Anonymised verified-buyer experiences, permission only."],
-  ["Swap Promise", "Draft", "One quiz-matched swap in 30 days, keep the old bottle, pay only actual supplier shipping plus postage. Not live until the owner enables it with real costs and approved terms."],
-  ["NIPTEI Passport / Ritual Points", "Coming soon", "From real actions only."],
-  ["Global Hair Map", "Coming soon", "Opt-in pins storing only country / type / climate. Empty countries show “Be the first in your country”."],
-  ["Watch Your Bottle Being Made", "Coming soon", "Real batch photo at quality check, or “Update coming soon”."],
-  ["Never Run Out", "Coming soon", "Usage-based reorder offer 3 days before run-out. Never auto-charge without approval."],
+  ["Swap Promise", "Coming soon", "One quiz-matched swap in 30 days, keep the old bottle, pay only actual supplier shipping plus postage. Not live until the owner enables it with real costs and approved terms."],
+  ["NIPTEI Passport / Ritual Points", "Building", "From real actions only."],
+  ["Global Hair Map", "Building", "Opt-in pins storing only country / type / climate. Empty countries show “Be the first in your country”."],
+  ["Watch Your Bottle Being Made", "Building", "Real batch photo at quality check, or “Update coming soon”."],
+  ["Never Run Out", "Building", "Usage-based reorder offer 3 days before run-out. Never auto-charge without approval."],
   ["The NIPTEI Standard", "Live", "Public standard — transparent pricing, Honest Origin, Firsts."],
 ];
 
@@ -40,7 +51,12 @@ export default function WhyNipteiPage() {
       <h1>Why NIPTEI Is Different</h1>
       <p>Fair comparison — no invented prices or policies for Amazon or Walmart. What makes NIPTEI different: a quiz-matched routine for your hair, transparent pricing you can see, honest origin, preorder honesty, and a shop built around scalp health — not a one-size-fits-all magic bottle.</p>
       <h2>First Real Product Tracker — owner only, honest steps</h2>
-      <table><thead><tr><th>Step</th><th>Status</th><th>Notes</th></tr></thead><tbody>{TRACKER.map(([s, st, n]) => <tr key={s}><td>{s}</td><td>{st}</td><td>{n}</td></tr>)}</tbody></table>
+      {TRACKER_GROUPS.map(([group, steps]) => (
+        <div key={group}>
+          <h3>{group}</h3>
+          <table><thead><tr><th>Step</th><th>Status</th><th>Notes</th></tr></thead><tbody>{steps.map(([s, st, n]) => <tr key={s}><td>{s}</td><td>{st}</td><td>{n}</td></tr>)}</tbody></table>
+        </div>
+      ))}
       <h2>Proof, Not Promises</h2>
       <p>Every product page carries Proof slots — each one <strong>Pending</strong> until it is real: real ingredients, real origin documents, real safety review, real reviews (verified buyers only, with permission). Nothing is marked proven before it is proven.</p>
       <h2>Ten free differentiators</h2>

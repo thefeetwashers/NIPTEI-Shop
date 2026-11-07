@@ -8,7 +8,7 @@ export default function SupplierPortalPage() {
   const [msg, setMsg] = useState("");
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setMsg(code.trim() ? "Portal code noted. In the live shop, this signs you in to your own orders only — your products, your Trust Score, blind-ship packing slips — never NIPTEI prices, profit, other suppliers, or customer payment details. The portal is not connected to Supabase in this deployable build yet." : "Enter the portal code the owner issued you.");
+    setMsg(code.trim() ? "Portal code noted. In the live shop, this signs you in to your own orders only — your products, your Trust Score, blind-ship packing slips — never NIPTEI prices, profit, other suppliers, or customer payment details." : "Enter the portal code the owner issued you.");
   }
   return (
     <section><div className="container">

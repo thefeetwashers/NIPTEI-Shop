@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { PUBLIC_OFFERS } from "@/lib/artifact-data";
+// getpublicoffers — verbatim from the artifact: quiz offer 10% OFF, waitlist offer 15% OFF.
 export async function GET() {
-  return NextResponse.json({ ok: true, quiz_offer_live: false, quiz_offer_code: null, note: "The 15% quiz waitlist offer is owner-configured and OFF until the owner sets a code and expiry. No code exists. The cart-recovery discount is never exposed here." });
+  return NextResponse.json({ ok: true, ...PUBLIC_OFFERS });
 }
