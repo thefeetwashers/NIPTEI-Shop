@@ -1,0 +1,3 @@
+export default function DashboardSuppliers() {
+  return (<section><div className="container"><h1>Dashboard — Suppliers</h1><p>20 seeded suppliers in 5 groups (USA Formula, USA Packaging, USA Bulk Ingredients, Alibaba Formula — reference only, Alibaba Packaging). No supplier has been contacted, sample-tested, or marked Partner yet.</p><div className="notice">Quote requests go only to verified emails. Private Label Labs has no verified public email — use its contact form or phone (248) 938-4181. Do not use unverified addresses found elsewhere.</div><p>Supplier registration approvals: 0 pending. Quote requests: 0. Supplier listings: 0.</p></div></section>);
+}
