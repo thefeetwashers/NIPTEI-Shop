@@ -1,10 +1,11 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import "./globals.css";
+import HairLetterForm from "@/app/components/hair-letter-form";
 
 export const metadata = {
   title: "NIPTEI — Healthy Hair. Confident You.",
-  description: "NIPTEI luxury Natural & Vegan hair care. Healthy Hair. Confident You. Made in the United States.",
+  description: "NIPTEI luxury Natural & Vegan hair care. Healthy Hair. Confident You.",
 };
 
 function Footer() {
@@ -14,31 +15,40 @@ function Footer() {
         <p style={{ color: "#c9a227", fontSize: 20, fontWeight: 700 }}>
           NIPTEI — Healthy Hair. Confident You.
         </p>
-        <p>Natural &amp; Vegan. Made in the United States when verified with documents on file.</p>
+        <p>Natural &amp; Vegan. Origin verification status is shown on every product — no Made in USA badge until documents are on file.</p>
         <div className="footer-grid">
           <div>
             <h3>Shop</h3>
+            <Link href="/collection">The Collection</Link>
             <Link href="/collections">All Products</Link>
             <Link href="/quiz">Take the Hair Quiz</Link>
-            <Link href="/collections#hero3">Hero 3 — In Development</Link>
-            <Link href="/collections#men">Men Care</Link>
-            <Link href="/collections#pet">Pet Hair Care</Link>
-            <Link href="/collections#coming-soon">Coming Soon — Waitlist</Link>
+            <Link href="/problems">Shop by Your Problem</Link>
+            <Link href="/botanicals">Rare Botanicals</Link>
+            <Link href="/luxury">Luxury &amp; The Ritual</Link>
           </div>
           <div>
-            <h3>Shop by Your Hair</h3>
-            <Link href="/quiz">Type 1 — Fine / Straight</Link>
-            <Link href="/quiz">Type 2 — Wavy</Link>
-            <Link href="/quiz">Type 3 — Curly</Link>
-            <Link href="/quiz">Type 4 — Coily / Kinky</Link>
-            <Link href="/hair-loss">Thinning / Alopecia</Link>
+            <h3>Shop by Who It&apos;s For</h3>
+            <Link href="/collection?for=women">For Women</Link>
+            <Link href="/men">For Men</Link>
+            <Link href="/kids">For Kids</Link>
+            <Link href="/pets">For Pets</Link>
+            <Link href="/my-niptei">My NIPTEI</Link>
           </div>
           <div>
             <h3>Find Your Routine</h3>
             <Link href="/quiz">Hair Quiz (60 seconds)</Link>
             <Link href="/pricing">How NIPTEI Prices — Transparent Pricing</Link>
             <Link href="/hair-loss">Understanding Hair Loss</Link>
+            <Link href="/scalp-health">Scalp Health</Link>
             <Link href="/swap-promise">The Swap Promise</Link>
+          </div>
+          <div>
+            <h3>Learn</h3>
+            <Link href="/why-niptei">Why NIPTEI Is Different</Link>
+            <Link href="/standards">Our Standards</Link>
+            <Link href="/hair-letter">The NIPTEI Hair Letter</Link>
+            <Link href="/shipping">Shipping &amp; Delivery</Link>
+            <Link href="/problems">Shop by Your Problem</Link>
           </div>
           <div>
             <h3>Help &amp; Trust</h3>
@@ -46,6 +56,7 @@ function Footer() {
             <Link href="/swap-promise">Swap Promise — Terms (Draft)</Link>
             <Link href="/hair-loss">Education, not medical advice</Link>
             <Link href="/suppliers/register">Become a Supplier</Link>
+            <Link href="/suppliers/portal">Supplier Portal</Link>
           </div>
           <div>
             <h3>For Suppliers</h3>
@@ -53,6 +64,9 @@ function Footer() {
             <Link href="/suppliers/quote">Request a Quote</Link>
             <Link href="/dashboard">Owner Dashboard</Link>
             <Link href="/dashboard/suppliers">Suppliers</Link>
+            <Link href="/dashboard/labels">Labels Library</Link>
+            <Link href="/dashboard/shipping">Shipping</Link>
+            <Link href="/dashboard/tracker">First Real Product Tracker</Link>
           </div>
           <div>
             <h3>Follow NIPTEI — Worldwide</h3>
@@ -66,9 +80,10 @@ function Footer() {
             <span>Bluesky — Coming soon</span>
           </div>
         </div>
+        <HairLetterForm source="Footer" />
         <div className="footer-bottom">
           <p>© 2026 NIPTEI — Premium Hair Care. Healthy Hair. Confident You.</p>
-          <p>Made with care in Broward County, Florida, USA — for customers all over the world.</p>
+          <p>Labels: shop.niptei.com • support@niptei.com</p>
           <p>Worldwide shipping — coming soon, join the waitlist for your country. Secure checkout — coming soon.</p>
           <p>Building the platform everyone will be talking about.</p>
         </div>
@@ -82,15 +97,33 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body>
         <header className="site">
-          <div className="container">
-            <Link className="brand" href="/">NIPTEI<small>HEALTHY HAIR · CONFIDENT YOU</small></Link>
-            <nav className="main">
-              <Link href="/collections">Shop</Link>
-              <Link href="/quiz">Hair Quiz</Link>
-              <Link href="/pricing">Transparent Pricing</Link>
-              <Link href="/swap-promise">Swap Promise</Link>
-              <Link href="/suppliers/register">Become a Supplier</Link>
-              <Link href="/dashboard">Dashboard</Link>
+          <div className="container header-row">
+            <Link className="brand" href="/">NIPTEI<small>NATURAL HAIR CARE</small></Link>
+            <nav className="main" aria-label="Main navigation">
+              <Link href="/collection">Shop</Link>
+              <Link href="/collection">The Collection</Link>
+              <details className="nav-dropdown">
+                <summary>Shop by Who It&apos;s For ▾</summary>
+                <div className="nav-menu">
+                  <Link href="/collection?for=women">For Women</Link>
+                  <Link href="/men">For Men</Link>
+                  <Link href="/kids">For Kids</Link>
+                  <Link href="/pets">For Pets</Link>
+                </div>
+              </details>
+              <Link href="/botanicals">Rare Botanicals</Link>
+              <Link href="/my-niptei">My NIPTEI</Link>
+              <details className="nav-dropdown">
+                <summary>More ▾</summary>
+                <div className="nav-menu">
+                  <Link href="/why-niptei">Why NIPTEI</Link>
+                  <Link href="/luxury">Luxury</Link>
+                  <Link href="/scalp-health">Learn</Link>
+                  <Link href="/kids">NIPTEI Kids</Link>
+                  <Link href="/suppliers/portal">Supplier Portal</Link>
+                  <Link href="/dashboard">Owner Dashboard</Link>
+                </div>
+              </details>
             </nav>
           </div>
         </header>

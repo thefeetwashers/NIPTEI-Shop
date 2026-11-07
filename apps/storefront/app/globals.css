@@ -40,3 +40,38 @@ td,th{border-bottom:1px solid #eee;padding:8px;text-align:left}
 input[type=range]{padding:0}
 .quiz-option{display:block;width:100%;text-align:left;background:#fff;border:1px solid #ccc;border-radius:6px;padding:12px;margin:8px 0;cursor:pointer;font-size:16px}
 .quiz-option:hover{border-color:var(--gold);background:#fffdf0}
+/* Header — short, one line, no horizontal scrolling on phone width */
+.header-row{flex-wrap:nowrap}
+header.site .container.header-row{justify-content:space-between}
+nav.main{align-items:center;flex-wrap:wrap}
+.nav-dropdown{position:relative}
+.nav-dropdown summary{color:#fff;cursor:pointer;font-size:14px;list-style:none}
+.nav-dropdown summary:hover{color:var(--gold-light)}
+.nav-dropdown summary::-webkit-details-marker{display:none}
+.nav-menu{position:absolute;top:100%;left:0;background:#111;border:1px solid var(--gold);border-radius:6px;padding:8px;min-width:180px;z-index:20}
+.nav-menu a{display:block;color:#fff;padding:6px 8px;font-size:14px}
+.nav-menu a:hover{color:var(--gold-light)}
+@media (max-width:700px){
+  .header-row{flex-wrap:wrap}
+  .brand{font-size:22px}
+  nav.main{gap:10px}
+  nav.main a,.nav-dropdown summary{font-size:13px}
+  .hero h1{font-size:32px}
+  body{overflow-x:hidden}
+}
+/* Hero — split, matching the artifact */
+.eyebrow{letter-spacing:3px;font-size:13px;color:var(--gold-light);font-weight:700;font-family:Arial,sans-serif}
+.hero-split{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;text-align:left}
+.hero-copy h1{font-size:52px}
+.hero-badges .badge{margin:2px}
+.hero-visual{background:#111;border:1px solid var(--gold);border-radius:12px;padding:24px;text-align:center;color:#fff}
+.hero-visual-title{color:var(--gold-light);font-size:20px;font-weight:700;margin:0 0 4px}
+.before-after{display:flex;align-items:center;justify-content:center;gap:12px;margin:20px 0}
+.ba-circle{width:90px;height:90px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-family:Arial,sans-serif}
+.ba-circle.gold{border-color:var(--gold);color:var(--gold-light)}
+.ba-arrow{font-size:24px;color:var(--gold)}
+.hero-claims{font-size:14px;color:#ddd}
+@media (max-width:700px){.hero-split{grid-template-columns:1fr}}
+/* Zero horizontal overflow guard: nothing on the page may force sideways scroll */
+html,body{max-width:100%;overflow-x:hidden}
+img{max-width:100%;height:auto}

@@ -6,6 +6,9 @@ const LINKS = [
   ["Suppliers", "/dashboard/suppliers", "20 seeded suppliers, registration approvals, quote requests, Trust Score."],
   ["Pricing", "/dashboard/pricing", "Transparent Pricing Calculator. No swap buffer."],
   ["Swaps", "/dashboard/swaps", "Swap requests. Empty until a real swap happens."],
+  ["Labels Library", "/dashboard/labels", "Label proofs for suppliers — shop.niptei.com • support@niptei.com. Design proofs, not final print files."],
+  ["Shipping", "/dashboard/shipping", "Dual-carrier strategy + Shipping Calculator. Estimate only."],
+  ["First Real Product Tracker", "/dashboard/tracker", "7 honest steps. Step 1 in progress (Pravada inquiry sent)."],
 ];
 
 export default function DashboardPage() {

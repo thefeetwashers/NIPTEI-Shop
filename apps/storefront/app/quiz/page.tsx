@@ -2,56 +2,81 @@
 import { useState } from "react";
 import Link from "next/link";
 import { HAIR_EDUCATION } from "@/lib/pricing";
-import { productsByCollection } from "@/lib/products";
+import { getProduct } from "@/lib/products";
+import HairLetterForm from "@/app/components/hair-letter-form";
 
-const QUESTIONS = [
-  { id: "who", q: "Who is this routine for?", options: ["For me (woman)", "For me (man)", "For my partner", "For my child", "For my pet"] },
-  { id: "goal", q: "What is your main hair goal?", options: ["Grow longer / stronger", "Stop breakage", "Thinning / shedding", "Moisture / dryness", "Curl definition"] },
-  { id: "type", q: "What is your hair texture?", options: ["Type 1 — Fine / Straight", "Type 2 — Wavy", "Type 3 — Curly", "Type 4 — Coily / Kinky", "Thinning / Alopecia"] },
-  { id: "effort", q: "How much time do you want to spend on your routine?", options: ["Under 5 minutes", "10 minutes", "A full ritual — 20+ minutes"] },
-];
+const Q2 = ["Itchy, flaky or irritated scalp", "Buildup — hair feels heavy, dull, coated", "Thinning / wider part / more scalp showing", "Dry, brittle or damaged hair", "My scalp is fine — I want growth and shine"];
+const Q3 = ["Yes — noticeably thinner or shedding more", "A little — some change", "No — density is the same", "Not sure"];
+const Q4 = ["Wash and go — under 5 minutes", "A simple routine — 10 minutes", "A full ritual — 20+ minutes", "Protective styles most days"];
 
 export default function QuizPage() {
-  const [step, setStep] = useState(0);
+  const [who, setWho] = useState<string | null>(null);
+  const [waitlistFor, setWaitlistFor] = useState<string | null>(null);
+  const [step, setStep] = useState(0); // 0=Q1, 1=Q2, 2=Q3, 3=Q4, 4=done
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const done = step >= QUESTIONS.length;
-  const type = answers["type"] || "";
-  const key = type.startsWith("Type 1") ? "Type 1" : type.startsWith("Type 2") ? "Type 2" : type.startsWith("Type 3") ? "Type 3" : type.startsWith("Type 4") ? "Type 4" : "Thinning / Alopecia";
-  const edu = HAIR_EDUCATION[key];
-  const matched = type.includes("Thinning")
-    ? productsByCollection("core").filter((p) => p.slug === "anti-hair-loss-shampoo" || p.slug === "hair-growth-serum")
-    : type.startsWith("Type 4")
-      ? productsByCollection("core").filter((p) => p.slug === "strengthen-restore-shampoo" || p.slug === "hair-growth-serum")
-      : productsByCollection("core").slice(0, 3);
+  const serum = getProduct("scalp-resurfacing-growth-serum");
 
-  if (done) {
+  if (waitlistFor) {
     return (
       <section><div className="container">
-        <h1>Your Hair Twin — Results</h1>
-        <p><strong>Quiz ID:</strong> {`NIPTEI-${Object.values(answers).join("-").slice(0, 24).replace(/[^A-Za-z0-9]/g, "").toUpperCase() || "QUIZ"}`}</p>
-        <div className="card"><h2>{edu.title}</h2><p>{edu.body}</p>
-          {key === "Thinning / Alopecia" && <p><Link href="/hair-loss">Read Understanding Hair Loss — education, not medical advice →</Link></p>}
-        </div>
-        <h2>Your matched routine</h2>
-        <div className="grid">{matched.map((p) => (
-          <article key={p.slug} className="card"><h3>{p.name}</h3><p>{p.tagline}</p><p className="price soon">Price coming soon</p><p><Link href={`/products/${p.slug}`}>View product →</Link></p></article>
-        ))}</div>
-        <p>Who it is for: {answers["who"]}. Goal: {answers["goal"]}. Time: {answers["effort"]}.</p>
-        {answers["who"]?.includes("pet") && <div className="warning"><strong>Pet note:</strong> human products are NOT for pets. Your pet needs a separate, vet-reviewed formula. See Pet Hair Care.</div>}
-        <p><Link className="btn" href="/quiz" onClick={() => { setStep(0); setAnswers({}); }}>Retake the quiz</Link> <Link className="btn secondary" href="/pricing">See how the price is made</Link></p>
+        <h1>Coming Soon — Join the Waitlist</h1>
+        <p>{waitlistFor} routines are coming soon. Join the email waitlist and get <strong>15% off your first household order</strong> — the offer is owner-configured and OFF until the owner sets a code and expiry, so no code is shown here yet.</p>
+        <HairLetterForm source={`Quiz waitlist — ${waitlistFor}`} />
+        <p><button className="btn secondary" onClick={() => setWaitlistFor(null)}>← Back to the quiz</button></p>
       </div></section>
     );
   }
-  const q = QUESTIONS[step];
+
+  if (step === 4) {
+    return (
+      <section><div className="container">
+        <p>Analyzing your follicular profile…</p>
+        <h1>Your Perfect Routine Match: The Niptei Resurfacing &amp; Growth Ecosystem</h1>
+        <p style={{ fontSize: 13, color: "#666" }}>This is a quiz, not a medical scan or diagnosis.</p>
+        <div className="card"><h2>Featured hero — Scalp-Resurfacing &amp; Growth Serum</h2>
+          <p>{serum?.description}</p>
+          <p className="price soon">Price coming soon</p>
+          <p>In Development — Join Waitlist. The $38 target price is a target only and never appears as a buyable price.</p>
+          <p><Link href="/products/scalp-resurfacing-growth-serum">View the serum →</Link></p>
+        </div>
+        <p>Who it is for: {who}. Scalp: {answers.q2}. Density: {answers.q3}. Routine: {answers.q4}.</p>
+        <p><strong>Name Your Routine:</strong> give your matched routine a name — it is yours.</p>
+        <p><button className="btn" onClick={() => { setStep(0); setWho(null); setAnswers({}); }}>Retake the quiz</button> <Link className="btn secondary" href="/pricing">See how the price is made</Link></p>
+        <HairLetterForm source="Quiz results" />
+      </div></section>
+    );
+  }
+
+  if (step === 0) {
+    return (
+      <section><div className="container">
+        <h1>Find Your Perfect Hair Routine in 60 Seconds</h1>
+        <h2>Who is this routine for?</h2>
+        {["For Me (Woman)", "For Me (Man)", "For My Partner"].map((o) => (
+          <button key={o} className="quiz-option" onClick={() => { setWho(o); setStep(1); }}>{o}</button>
+        ))}
+        <button className="quiz-option" onClick={() => setWaitlistFor("For My Child (Coming Soon)")}>For My Child (Coming Soon)</button>
+        <button className="quiz-option" onClick={() => setWaitlistFor("For My Pet (Coming Soon)")}>For My Pet (Coming Soon)</button>
+        <p style={{ fontSize: 13, color: "#666" }}>Your answers stay in your browser for this quiz. No medical claims are made from quiz results.</p>
+      </div></section>
+    );
+  }
+
+  const questions = [
+    { id: "q2", q: "What frustrates you most about your scalp?", options: Q2 },
+    { id: "q3", q: "Has your hair density or growth changed?", options: Q3 },
+    { id: "q4", q: "What is your styling routine?", options: Q4 },
+  ];
+  const q = questions[step - 1];
   return (
     <section><div className="container">
       <h1>Find Your Perfect Hair Routine in 60 Seconds</h1>
-      <p>Question {step + 1} of {QUESTIONS.length}</p>
+      <p>Question {step + 1} of 4</p>
       <h2>{q.q}</h2>
       {q.options.map((o) => (
         <button key={o} className="quiz-option" onClick={() => { setAnswers({ ...answers, [q.id]: o }); setStep(step + 1); }}>{o}</button>
       ))}
-      <p style={{ fontSize: 13, color: "#666" }}>Your answers stay in your browser for this quiz. No medical claims are made from quiz results.</p>
+      <p style={{ fontSize: 13, color: "#666" }}>This is a quiz, not a medical scan or diagnosis.</p>
     </div></section>
   );
 }

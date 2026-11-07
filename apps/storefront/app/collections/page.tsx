@@ -5,13 +5,17 @@ import { PRODUCTS, productsByCollection, COLLECTION_LABELS } from "@/lib/product
 
 export default function CollectionsPage() {
   const groups: Array<[string, string]> = [
-    ["core", "Core Collection"], ["luxury", "Luxury Collection"], ["hero3", "Hero 3 — In Development"],
-    ["men", "Men Care"], ["pet", "Pet Hair Care"], ["kids", "Kids Care — Coming Soon"],
-    ["new-mums", "New Mums — Coming Soon"], ["sensitive", "Sensitive Scalp — Coming Soon"], ["silver", "Silver & Grey — Coming Soon"],
+    ["core", "Core Collection"], ["luxury", "Luxury Collection"], ["chebe", "Chebe Collection"], ["hero3", "Hero 3 — In Development"],
+    ["scalp", "Scalp Health — Skin-First Scalp Care"], ["complete", "Complete Care"], ["firsts", "NIPTEI Firsts"],
+    ["men", "Men Care"], ["pet", "Pet Hair Care"], ["kids", "NIPTEI Kids"],
+    ["new-mums", "New Mums / Postpartum"], ["sensitive", "Sensitive Scalp"], ["silver", "Silver & Grey"],
+    ["pro", "NIPTEI Pro"], ["gift", "Gift a Routine"], ["ritual", "The NIPTEI Ritual"],
+    ["bundles", "Bundle & Gift Sets"], ["botanical", "Rare Botanicals"], ["reserve", "Botanical Reserve"], ["little", "Little Botanicals"],
   ];
   return (
     <section><div className="container">
-      <h1>All Products</h1>
+      <h1>All Products — The Collection</h1>
+      <p>See <a href="/collection">The Collection</a> with Shop by Who It’s For filters (For Women / Men / Kids / Pets).</p>
       <p>Every product shows “Price coming soon” until the owner sets a real price. No prices are invented here.</p>
       {groups.map(([key, label]) => {
         const items = productsByCollection(key as never);
