@@ -1,65 +1,60 @@
 import Link from "next/link";
-import { PRODUCTS, productsByCollection, formatPrice, COLLECTION_LABELS } from "@/lib/products";
-import { ProductGrid } from "@/app/components/product-card";
-import HairLetterForm from "@/app/components/hair-letter-form";
+import QuizSection from "@/components/QuizSection";
+import { ProductCard, ProductGrid } from "@/components/ProductCard";
+import HairLetterForm from "@/components/HairLetterForm";
+import { getProduct, productsByCollection } from "@/lib/products";
 
-function ProductCard({ p }: { p: (typeof PRODUCTS)[number] }) {
-  const buyable = p.status === "live";
-  return (
-    <article className="card">
-      {p.image && <img src={p.image} alt={`${p.name} — design proof, not a final print file`} style={{ width: "100%", borderRadius: 6, marginBottom: 8 }} />}
-      <h3>{p.name}</h3>
-      <p>{p.tagline}{p.sizeLabel ? ` · ${p.sizeLabel}` : ""}</p>
-      <p className="price soon">{formatPrice(p.priceCents)}</p>
-      <p>
-        <span className="badge">{COLLECTION_LABELS[p.collection]}</span>{" "}
-        {p.status !== "live" && <span className="badge gold">{p.status === "in-development" ? "In Development — Waitlist" : "Coming Soon — Waitlist"}</span>}
-      </p>
-      <p>{p.description}</p>
-      <p><Link href={`/products/${p.slug}`}>View product →</Link></p>
-      {buyable ? <button className="btn" disabled>Add to Bag (coming soon)</button> : <Link className="btn secondary" href="/collection">Join the waitlist</Link>}
-    </article>
-  );
-}
+const PROBLEM_ROWS: Array<[string, string, string[]]> = [
+  ["Buildup — product / sebum buildup, scalp suffocation", "Purifying Scalp Scrub", ["care-scalp-scrub"]],
+  ["Itch / flaking — severe flaking and irritation", "Microbiome-Balancing Drop Serum / Scalp-Resurfacing & Growth Serum", ["scalp-resurfacing-growth-serum"]],
+  ["Damaged / brittle — over-processed hair", "Molecular Hair Repair Mask", ["nourishing-hair-mask"]],
+  ["Thinning — wider part, more scalp showing, excessive shedding", "Root Renewal Scalp Stimulating Elixir + Hair Growth Serum", ["care-root-renewal-elixir", "hair-growth-serum"]],
+  ["Dry / dull", "Nourishing Hair Mask + Argan Oil Shampoo + Argan Oil Conditioner", ["nourishing-hair-mask", "argan-oil-shampoo", "argan-oil-conditioner"]],
+  ["Beard", "Beard Growth Oil + Beard Wash & Conditioner + Razor Bump Oil", ["men-beard-growth-oil", "men-beard-wash-conditioner", "men-razor-bump-soothing-oil"]],
+  ["Pet coat", "Gentle Pet Shampoo + Pet Coat & Skin Oil", ["pet-shampoo-dogs", "pet-coat-skin-oil"]],
+];
+
+const HAIR_TYPES = [
+  "Type 1 — Fine / Straight",
+  "Type 2 — Wavy",
+  "Type 3 — Curly",
+  "Type 4 — Coily / Kinky",
+  "Thinning / Alopecia",
+];
+
+const HERO_CATEGORIES: Array<[string, string]> = [
+  ["Purifying Scalp Scrubs", "For scalp suffocation and buildup."],
+  ["Microbiome-Balancing Drop Serums", "For severe flaking and irritation."],
+  ["Molecular Hair Repair Masks", "For over-processed and brittle strands."],
+];
 
 export default function Home() {
   const hero3 = productsByCollection("hero3");
   const core = productsByCollection("core");
   const luxury = productsByCollection("luxury");
-  const scalp = productsByCollection("scalp");
+  const botanical = productsByCollection("botanical");
   return (
     <>
-      <section className="hero-artifact">
-        <div className="hero-artifact-grid">
-          <div className="hero-artifact-copy">
-            <p className="eyebrow">Natural &amp; Vegan Hair Care</p>
-            <h1>Grow Strong.<br />Live Beautiful.</h1>
-            <p>Botanical hair care rooted in nature — Jamaican black castor oil, pumpkin seed and herbal infusions. No parabens, no sulfates, cruelty free.</p>
-            <p className="hero-badges">
-              <span className="badge hero-badge-accent">🌿 100% Natural &amp; Vegan</span>{" "}
-              <span className="badge hero-badge-gold">🔎 Honest origin — verified with documents, shown on every product</span>{" "}
-              <span className="badge hero-badge-accent">🐰 Cruelty Free</span>
-            </p>
+      <section className="overflow-hidden rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface)]">
+        <div className="grid md:grid-cols-2">
+          <div className="flex flex-col justify-center p-6 sm:p-10">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--gold)]">Natural &amp; Vegan Hair Care</p>
+            <h1 className="font-display mt-3 text-4xl font-semibold leading-tight sm:text-5xl">Grow Strong.<br />Live Beautiful.</h1>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-[var(--dim)]">Botanical hair care rooted in nature — Jamaican black castor oil, pumpkin seed and herbal infusions. No parabens, no sulfates, cruelty free.</p>
+            <div className="mt-6 flex flex-wrap gap-2 text-xs font-semibold">
+              <span className="rounded-full bg-[var(--accent-soft)] px-3 py-1.5">🌿 100% Natural &amp; Vegan</span>
+              <span className="rounded-full bg-[var(--gold-soft)] px-3 py-1.5">🔎 Honest origin — verified with documents, shown on every product</span>
+              <span className="rounded-full bg-[var(--accent-soft)] px-3 py-1.5">🐰 Cruelty Free</span>
+            </div>
           </div>
-          <img className="hero-artifact-img" src="/images/hero-strengthen-restore-shampoo.jpg" alt="Strengthen &amp; Restore Shampoo" />
+          <img alt="Strengthen &amp; Restore Shampoo" className="h-full max-h-[420px] w-full object-cover" src="/images/hero-strengthen-restore-shampoo.jpg" />
         </div>
       </section>
+      <QuizSection />
       <section>
         <div className="container">
-          <div className="card">
-            <h2>Find Your Perfect Hair Routine in 60 Seconds</h2>
-            <h3>Who is this routine for?</h3>
-            <div className="grid">
-              <Link className="quiz-option" href="/quiz">For Me (Woman)</Link>
-              <Link className="quiz-option" href="/quiz">For Me (Man)</Link>
-              <Link className="quiz-option" href="/quiz">For My Partner</Link>
-              <Link className="quiz-option" href="/quiz">For My Child (Coming Soon)</Link>
-              <Link className="quiz-option" href="/quiz">For My Pet (Coming Soon)</Link>
-            </div>
-            <p><Link className="btn" href="/quiz">Take the Hair Quiz</Link></p>
-          </div>
           <h2>Shop by Who It&apos;s For</h2>
-          <p>One household, one shop. Women, Men, Kids, Pets, New Mums, Sensitive Scalps, Silver Hair — and the salons that care for them.</p>
+          <p>One household, one shop. Women, Men, Kids, Pets, New Mums, Sensitive Scalps, Silver Hair…</p>
           <div className="grid">
             <div className="card"><h3>For Women</h3><p>Luxury, Hero 3, Scalp Health, Botanical Reserve and all adult women&apos;s routines.</p><Link href="/collection?for=women">Shop for Women →</Link></div>
             <div className="card"><h3>For Men</h3><p>Beard, scalp and styling care.</p><Link href="/men">Shop Men Care →</Link></div>
@@ -68,33 +63,47 @@ export default function Home() {
           </div>
           <h2>Shop by Your Hair</h2>
           <div className="grid">
-            {["Type 1 — Fine / Straight", "Type 2 — Wavy", "Type 3 — Curly", "Type 4 — Coily / Kinky", "Thinning / Alopecia"].map((t) => (
+            {HAIR_TYPES.map((t) => (
               <div key={t} className="card"><h3>{t}</h3><p>Find the routine made for this hair.</p><Link href="/quiz">Take the quiz →</Link></div>
             ))}
           </div>
           <h2>The Three Hero Categories</h2>
           <p><strong>Not basic shampoo. Three specialized solutions — Purify the scalp, Balance the scalp, Repair the hair.</strong></p>
           <div className="grid">
-            <div className="card"><h3>Purifying Scalp Scrubs</h3><p>For scalp suffocation and buildup.</p><Link href="/scalp-health">Scalp Health →</Link></div>
-            <div className="card"><h3>Microbiome-Balancing Drop Serums</h3><p>For severe flaking and irritation. This is a cosmetic, not a medicine.</p><Link href="/scalp-health">Scalp Health →</Link></div>
-            <div className="card"><h3>Molecular Hair Repair Masks</h3><p>For over-processed and brittle strands.</p><Link href="/scalp-health">Scalp Health →</Link></div>
+            {HERO_CATEGORIES.map(([name, desc]) => (
+              <div key={name} className="card">
+                <h3>{name}</h3>
+                <p>{desc}</p>
+                <p>This is a cosmetic, not a medicine. If you have a scalp condition, see a doctor / dermatologist / trichologist.</p>
+                <Link href="/scalp-health">Scalp Health →</Link>
+              </div>
+            ))}
           </div>
-          <ProductGrid items={scalp.slice(0, 3)} />
           <h2>Hero 3 — In Development</h2>
           <p>Our original formulas, developed with a US cosmetic manufacturer. Hero 3 first. Waitlist only — no price, no buy button, until the formula and safety review are done.</p>
           <div className="grid">{hero3.map((p) => <ProductCard key={p.slug} p={p} />)}</div>
+          <p><Link className="btn secondary" href="/collection">Join the waitlist</Link></p>
           <h2>Core Collection</h2>
           <div className="grid">{core.map((p) => <ProductCard key={p.slug} p={p} />)}</div>
           <h2>Luxury Collection</h2>
           <div className="grid">{luxury.map((p) => <ProductCard key={p.slug} p={p} />)}</div>
           <h2>Rare Botanicals — Beyond Ordinary Oils</h2>
           <p>Rare oils. Thoughtful botanical science. Hair care for every generation. <Link href="/botanicals">Explore Rare Botanicals →</Link></p>
+          <ProductGrid items={botanical} />
           <h2>Shop by Your Problem</h2>
-          <p>One Problem. One Solution. One Product That Does the Job. <Link href="/problems">Shop by Your Problem →</Link></p>
+          <p>One Problem. One Solution. One Product That Does the Job.</p>
+          <p>Education only — never a diagnosis or a cure. If a scalp condition worries you, see a doctor / dermatologist / trichologist.</p>
           <div className="notice">
             <strong>Our Honest Promise:</strong> we do not sell a one-size-fits-all magic bottle.
           </div>
-          <p><Link href="/pricing">See how NIPTEI prices — Transparent Pricing →</Link> · <Link href="/swap-promise">The Swap Promise →</Link> · <Link href="/why-niptei">Why NIPTEI Is Different →</Link></p>
+          {PROBLEM_ROWS.map(([problem, solution, slugs]) => (
+            <div key={problem} className="card">
+              <h2>{problem}</h2>
+              <p><strong>Solution:</strong> {solution}</p>
+              <div className="grid">{slugs.map((s) => { const p = getProduct(s); return p ? <ProductCard key={s} p={p} /> : null; })}</div>
+            </div>
+          ))}
+          <p>Worldwide shipping coming soon — join the waitlist. English / USD for now. <Link href="/quiz">Find your routine first →</Link></p>
           <HairLetterForm source="Homepage" />
         </div>
       </section>

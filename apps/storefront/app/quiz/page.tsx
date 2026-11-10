@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { HAIR_EDUCATION } from "@/lib/pricing";
 import { getProduct } from "@/lib/products";
-import HairLetterForm from "@/app/components/hair-letter-form";
+import { PUBLIC_OFFERS } from "@/lib/artifact-data";
+import HairLetterForm from "@/components/HairLetterForm";
 
 const Q2 = ["Itchy, flaky or irritated scalp", "Buildup — hair feels heavy, dull, coated", "Thinning / wider part / more scalp showing", "Dry, brittle or damaged hair", "My scalp is fine — I want growth and shine"];
 const Q3 = ["Yes — noticeably thinner or shedding more", "A little — some change", "No — density is the same", "Not sure"];
@@ -21,6 +21,11 @@ export default function QuizPage() {
       <section><div className="container">
         <h1>Coming Soon — Join the Waitlist</h1>
         <p>{waitlistFor} routines are coming soon. Join the email waitlist and get <strong>15% off your first household order</strong>.</p>
+        <p>
+          Offer status: {PUBLIC_OFFERS.waitlist_offer_enabled
+            ? `${PUBLIC_OFFERS.waitlist_offer_pct}% off with code ${PUBLIC_OFFERS.waitlist_offer_code}`
+            : "not yet active — no code or expiry set by the owner."}
+        </p>
         <HairLetterForm source={`Quiz waitlist — ${waitlistFor}`} />
         <p><button className="btn secondary" onClick={() => setWaitlistFor(null)}>← Back to the quiz</button></p>
       </div></section>

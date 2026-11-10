@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LABEL_CONTACT_LINE } from "@/lib/products";
 
 export default function StandardsPage() {
   return (
@@ -10,6 +11,9 @@ export default function StandardsPage() {
       <div className="card"><h2>Claims</h2><p>We use: “Supports a healthy scalp ecosystem”, “Reduces breakage and shedding”, “Improves the appearance of hair density and thickness”, “Helps hair feel softer and smoother”, “Improves the appearance of shine”. We never use: “Cures Baldness”, “Regrows Hair”, “Reverses baldness”, “Stops alopecia”, “Stimulates hair follicles”, “Treats dandruff, eczema, psoriasis, or scalp infections”, “Prevents hair loss”. Cosmetics generally do not get FDA premarket approval — safety substantiation, labeling and MoCRA obligations apply.</p></div>
       <div className="card"><h2>Certifications</h2><p>Not certified yet — where that is true, we say so. No certification is claimed until it is earned and documented.</p></div>
       <div className="card"><h2>Reviews</h2><p>Only genuine reviews, from verified buyers, with permission. No invented reviews or review counts — ever.</p></div>
+      <div className="card"><h2>Premium Custom-Formula vs Dropshipping</h2><p>Premium Custom-Formula and Dropshipping / AliExpress stay separate. No AliExpress product enters the Premium Custom-Formula collection unless independently verified for quality and with permission to brand it. Nothing China-shipped is labelled Made in USA.</p></div>
+      <div className="card"><h2>The Open NIPTEI Standard</h2><p>The NIPTEI Standard is public — transparent pricing, Honest Origin, Firsts. Anyone can check us against it.</p></div>
+      <p>{LABEL_CONTACT_LINE}</p>
       <p><Link href="/why-niptei">Why NIPTEI Is Different →</Link> · <Link href="/collection">The Collection →</Link></p>
     </div></section>
   );

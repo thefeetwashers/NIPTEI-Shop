@@ -1,4 +1,5 @@
 import { SWAP_PROMISE_TERMS } from "@/lib/pricing";
+import { SWAP_TEMPLATES } from "@/lib/artifact-data";
 
 export default function SwapPromisePage() {
   return (
@@ -15,7 +16,13 @@ export default function SwapPromisePage() {
       <div className="card"><h2>How a swap works</h2>
         <ol><li>Request a Swap in My NIPTEI within 30 days, once per order.</li><li>Re-take the diagnostic quiz.</li><li>Pay the exchange shipping fee at swap checkout — no charge without your approval.</li><li>The system generates the new shipping label and signals the matched supplier.</li><li>Tracking appears in My NIPTEI. Status: Requested → Fee paid → Replacement shipped → Delivered.</li></ol>
       </div>
-      <p>Swap Promise status: {SWAP_PROMISE_TERMS.status}.</p>
+      <div className="card"><h2>Swap notifications — exact copy</h2>
+        <p><strong>Email subject:</strong> {SWAP_TEMPLATES.email_subject}</p>
+        <p><strong>Email preview:</strong> {SWAP_TEMPLATES.email_preview}</p>
+        <p style={{ whiteSpace: "pre-line" }}>{SWAP_TEMPLATES.email_body}</p>
+        <p><strong>SMS:</strong> {SWAP_TEMPLATES.sms_text}</p>
+      </div>
+      <p>Swap Promise status: {SWAP_PROMISE_TERMS.status}. Terms must be approved in the dashboard before enabling.</p>
     </div></section>
   );
 }

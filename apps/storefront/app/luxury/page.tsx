@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { productsByCollection } from "@/lib/products";
-import { ProductGrid } from "@/app/components/product-card";
+import { ProductGrid } from "@/components/ProductCard";
 
 export default function LuxuryPage() {
+  const luxury = productsByCollection("luxury");
   const ritual = productsByCollection("ritual");
   const gift = productsByCollection("gift");
   return (
@@ -13,6 +14,8 @@ export default function LuxuryPage() {
       <div className="card"><h2>Personal Hair Concierge</h2><p>30 / 60 / 90-day check-ins. Waitlist only — no staff invented, no claims invented.</p></div>
       <div className="card"><h2>NIPTEI Ritual Subscription Box</h2><p>Coming Soon. Never auto-charged without approval.</p></div>
       <div className="card"><h2>Luxury Gifting</h2><p>Gift a routine — a box, not a guess. Coming Soon / waitlist only.</p></div>
+      <h2>The Luxury Collection</h2>
+      <ProductGrid items={luxury} />
       <ProductGrid items={ritual} />
       <ProductGrid items={gift} />
       <p><Link href="/standards">Our Standards — Ingredient &amp; Claims Transparency →</Link></p>

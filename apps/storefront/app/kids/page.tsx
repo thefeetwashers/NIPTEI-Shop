@@ -1,14 +1,17 @@
 import Link from "next/link";
-import { productsByCollection, productsByAudience } from "@/lib/products";
-import { ProductGrid } from "@/app/components/product-card";
-import HairLetterForm from "@/app/components/hair-letter-form";
+import { productsByCollection } from "@/lib/products";
+import { ProductGrid } from "@/components/ProductCard";
+import HairLetterForm from "@/components/HairLetterForm";
 
 const MEDICAL = "Persistent itching, scaling, inflammation or unusual hair loss should be evaluated by a pediatrician or dermatologist rather than treated with cosmetic products alone.";
 
 export default function KidsPage() {
   const kids = productsByCollection("kids");
   const little = productsByCollection("little");
-  const bundles = productsByCollection("bundles").filter((p) => p.slug.startsWith("kids-bundle") || p.slug.startsWith("bundle-little"));
+  const bundles = [
+    ...kids.filter((p) => p.slug.startsWith("kids-bundle")),
+    ...productsByCollection("bundles").filter((p) => p.slug.startsWith("bundle-little")),
+  ];
   const first5 = ["kids-gentle-tear-free-shampoo", "kids-moisturizing-shampoo", "kids-detangling-spray", "kids-leave-in-conditioner", "kids-curl-cream"].map((s) => kids.find((p) => p.slug === s)).filter((p): p is NonNullable<typeof p> => Boolean(p));
   return (
     <section><div className="container">

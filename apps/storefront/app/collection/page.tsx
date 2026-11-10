@@ -1,21 +1,34 @@
 import Link from "next/link";
-import { PRODUCTS, productsByCollection, COLLECTION_LABELS, PREORDER_TERMS, LABEL_CONTACT_LINE, type Collection } from "@/lib/products";
-import { ProductGrid } from "@/app/components/product-card";
-import HairLetterForm from "@/app/components/hair-letter-form";
+import { PRODUCTS, productsByCollection, PREORDER_TERMS, LABEL_CONTACT_LINE, type Collection } from "@/lib/products";
+import { ProductGrid } from "@/components/ProductCard";
+import HairLetterForm from "@/components/HairLetterForm";
 
 const GROUPS: Array<[Collection, string]> = [
-  ["core", "Collection A — Shampoo & Conditioner (Core)"], ["luxury", "Luxury Collection"], ["chebe", "Chebe Collection"],
-  ["hero3", "Hero 3 — In Development · Preorder Only"], ["scalp", "Scalp Health — Skin-First Scalp Care · Three Hero Categories"],
-  ["complete", "Complete Care"], ["firsts", "NIPTEI Firsts"], ["men", "Men Care"], ["pet", "Pet Hair Care"],
-  ["kids", "NIPTEI Kids"], ["new-mums", "New Mums / Postpartum"], ["sensitive", "Sensitive Scalp & Care Through Treatment"],
-  ["silver", "Silver & Grey"], ["pro", "NIPTEI Pro — for Salons & Barbers"], ["gift", "Gift a Routine · Travel & Gym Kit"],
-  ["ritual", "The NIPTEI Ritual"], ["bundles", "Bundle & Gift Sets"], ["botanical", "Rare Botanicals"], ["reserve", "Botanical Reserve — Adults"], ["little", "Little Botanicals — Children"],
+  ["core", "Collection A — Shampoo & Conditioner (Core)"],
+  ["luxury", "Luxury Collection"],
+  ["hero3", "Hero 3 — In Development · Preorder Only"],
+  ["scalp", "Scalp Health — Skin-First Scalp Care · Three Hero Categories"],
+  ["complete", "Complete Care"],
+  ["firsts", "NIPTEI Firsts"],
+  ["men", "Men Care"],
+  ["pet", "Pet Hair Care"],
+  ["kids", "NIPTEI Kids"],
+  ["new-mums", "New Mums / Postpartum"],
+  ["sensitive", "Sensitive Scalp & Care Through Treatment"],
+  ["silver", "Silver & Grey"],
+  ["pro", "NIPTEI Pro — for Salons & Barbers"],
+  ["gift", "Gift a Routine · Travel & Gym Kit"],
+  ["ritual", "The NIPTEI Ritual"],
+  ["bundles", "Bundle & Gift Sets"],
+  ["botanical", "Rare Botanicals"],
+  ["reserve", "Botanical Reserve — Adults"],
+  ["little", "Little Botanicals — Children"],
 ];
 
 export default async function CollectionPage({ searchParams }: { searchParams?: Promise<{ for?: string }> }) {
   const sp = await searchParams;
   const filter = sp?.for;
-  const groups = filter === "women" ? GROUPS.filter(([k]) => ["core", "luxury", "chebe", "hero3", "scalp", "complete", "firsts", "botanical", "reserve", "bundles", "gift", "ritual"].includes(k))
+  const groups = filter === "women" ? GROUPS.filter(([k]) => ["core", "luxury", "hero3", "scalp", "complete", "firsts", "botanical", "reserve", "bundles", "gift", "ritual"].includes(k))
     : filter === "men" ? GROUPS.filter(([k]) => k === "men" || k === "bundles")
     : filter === "kids" ? GROUPS.filter(([k]) => k === "kids" || k === "little" || k === "bundles")
     : filter === "pets" ? GROUPS.filter(([k]) => k === "pet")
@@ -26,12 +39,27 @@ export default async function CollectionPage({ searchParams }: { searchParams?: 
       <p><strong>{PREORDER_TERMS}</strong> Every product shows “Price coming soon” until the owner sets a real price. No prices, delivery dates, or stock are invented. Production window 4–6 weeks where applicable.</p>
       <details className="nav-dropdown" style={{ display: "inline-block" }}>
         <summary style={{ color: "#0f5c46", cursor: "pointer", fontWeight: 700 }}>Shop by Who It’s For ▾</summary>
-        <div className="nav-menu" style={{ background: "#fff", border: "1px solid #c9a227" }}>
-          <Link href="/collection" style={{ color: "#0f5c46" }}>All</Link>
-          <Link href="/collection?for=women" style={{ color: "#0f5c46" }}><span className="nav-item-title">For Women</span><span className="nav-item-desc">The women&apos;s collection — Luxury, Hero 3, Scalp Health, Botanical Reserve and every adult women&apos;s routine.</span></Link>
-          <Link href="/men" style={{ color: "#0f5c46" }}><span className="nav-item-title">For Men</span><span className="nav-item-desc">Men Care — Beard Growth Oil, Beard Wash &amp; Conditioner, Scalp Serum for Men, Anti-Thinning Shampoo for Men, Hair &amp; Beard Styling Balm, Razor Bump Oil and the Men&apos;s bundles.</span><span className="nav-item-badge">In Development · Preorder only</span></Link>
-          <Link href="/kids" style={{ color: "#0f5c46" }}><span className="nav-item-title">For Kids</span><span className="nav-item-desc">NIPTEI Kids — Little Hair. Big Confidence. All ages 0–3, 4–8, 9–12 and 13–17, Little Botanicals and the Kids bundles.</span><span className="nav-item-badge">In Development — professional review needed</span></Link>
-          <Link href="/pets" style={{ color: "#0f5c46" }}><span className="nav-item-title">For Pets</span><span className="nav-item-desc">Pet Hair Care for dogs and cats — separate dog and cat formulas, never human products on a pet.</span><span className="nav-item-badge">Pet products — NOT for human use · In development — vet review needed</span></Link>
+        <div className="nav-menu">
+          <Link href="/collection">All</Link>
+          <Link href="/collection?for=women">
+            <span className="nav-item-title">👩 For Women</span>
+            <span className="nav-item-desc">The women&apos;s collection — Luxury, Hero 3, Scalp Health, Botanical Reserve and every adult women&apos;s routine.</span>
+          </Link>
+          <Link href="/men">
+            <span className="nav-item-title">🧔 For Men</span>
+            <span className="nav-item-desc">Men Care — Beard Growth Oil, Beard Wash &amp; Conditioner, Scalp Serum for Men, Anti-Thinning Shampoo for Men, Hair &amp; Beard Styling Balm, Razor Bump Oil and the Men&apos;s bundles.</span>
+            <span className="nav-item-badge">In Development · Preorder only</span>
+          </Link>
+          <Link href="/kids">
+            <span className="nav-item-title">👧 For Kids</span>
+            <span className="nav-item-desc">NIPTEI Kids — Little Hair. Big Confidence. All ages 0–3, 4–8, 9–12 and 13–17, Little Botanicals and the Kids bundles.</span>
+            <span className="nav-item-badge">In Development — professional review needed</span>
+          </Link>
+          <Link href="/pets">
+            <span className="nav-item-title">🐾 For Pets</span>
+            <span className="nav-item-desc">Pet Hair Care for dogs and cats — separate dog and cat formulas, never human products on a pet.</span>
+            <span className="nav-item-badge">Pet products — NOT for human use · In development — vet review needed</span>
+          </Link>
         </div>
       </details>
       <p>Shop by Who It’s For: <Link href="/collection">All</Link> · <Link href="/collection?for=women">For Women</Link> · <Link href="/collection?for=men">For Men</Link> · <Link href="/collection?for=kids">For Kids</Link> · <Link href="/collection?for=pets">For Pets</Link></p>

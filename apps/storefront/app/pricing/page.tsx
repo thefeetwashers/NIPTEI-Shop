@@ -48,6 +48,11 @@ export default function PricingPage() {
         <h2>Example — not a real NIPTEI quote</h2>
         <p>The figures from the mockup — Wholesale Total $2,250.00, Net Profit Target +$2,536.36, Retail Price / Unit $56.36, 100 units, $8.50 shipping, 45% margin, 4.9 / 5.0 score — are examples only, from an apparel mockup. They are not NIPTEI prices, costs, or a supplier score. Real prices appear here only after the owner enters real quotes and sets a real price.</p>
       </div>
+      <div className="card">
+        <h2>Price Wizard — Strengths &amp; Fixes</h2>
+        <p><strong>Strengths:</strong> the pricing formula is public and transparent; the $0.40 swap buffer has been removed entirely from the retail calculation, so no swap cost is added to your prices; the margin floor is 25% — a product below the floor is paused until costs or price change.</p>
+        <p><strong>Fixes needed:</strong> no real supplier quote is in the calculator yet — every figure on this page is an example only, never a live price; the Supplier Operations Score is Not scored yet — no real supplier score; real prices appear here only after the owner enters real quotes and sets a real price.</p>
+      </div>
     </div></section>
   );
 }

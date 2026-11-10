@@ -23,6 +23,7 @@ export default function CollectionsPage() {
         return (
           <div key={key} id={key}>
             <h2>{label}</h2>
+            <p><Link href="/collection">See {label} in The Collection →</Link></p>
             {key === "pet" && <div className="warning"><strong>Pet safety:</strong> human hair products are NOT for pets. Pet formulas are made separately and need a vet review. Some human ingredients, including tea tree oil, are dangerous for cats.</div>}
             <div className="grid">{items.map((p) => (
               <article key={p.slug} className="card">

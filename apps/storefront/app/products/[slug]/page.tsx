@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProduct, formatPrice, LABEL_CONTACT_LINE, PREORDER_TERMS } from "@/lib/products";
 import { SWAP_PROMISE_TERMS } from "@/lib/pricing";
-import HairLetterForm from "@/app/components/hair-letter-form";
+import HairLetterForm from "@/components/HairLetterForm";
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -11,13 +11,20 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   return (
     <section><div className="container">
       <p><Link href="/collection">← The Collection</Link></p>
+      {p.image && <img src={p.image} alt={`${p.name} — design proof, not a final print file`} style={{ width: "100%", maxWidth: 480, borderRadius: 6, marginBottom: 8 }} />}
       <h1>{p.name}</h1>
       <p>{p.tagline}{p.sizeLabel ? ` · ${p.sizeLabel}` : ""}</p>
       <p className="price soon">{formatPrice(p.priceCents)}</p>
+      <p>
+        {p.status !== "live" && <span className="badge gold">{p.status === "in-development" ? "In Development — Waitlist" : "Coming Soon — Waitlist"}</span>}{" "}
+        {p.audience === "kids" && <span className="badge gold">In Development — professional review needed</span>}{" "}
+        {p.audience === "pets" && <span className="badge grey">Pet products — NOT for human use · In development — vet review needed</span>}
+      </p>
       <p>{PREORDER_TERMS}</p>
       <div className="notice">
         <strong>🔁 The Swap Promise</strong><br />
         Not your perfect match? Swap it once for free within 30 days for the right hair formula. You only cover the flat-rate exchange shipping fee. <Link href="/swap-promise">Read the terms (Draft) →</Link>
+        <p>Example fee: $5.00 flat. {SWAP_PROMISE_TERMS.rules[4]}</p>
       </div>
       <div className="card"><h2>About this product</h2><p>{p.description}</p>
         <p><strong>Origin:</strong> {p.originVerified ? (p.madeIn ? `${p.madeIn}. Verified with documents on file.` : "Verified with documents on file.") : "Origin: not yet documented — verification pending"}</p>

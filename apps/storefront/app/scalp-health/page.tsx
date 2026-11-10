@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { productsByCollection } from "@/lib/products";
-import { ProductGrid } from "@/app/components/product-card";
+import { ProductGrid } from "@/components/ProductCard";
 
 export default function ScalpHealthPage() {
   const scalp = productsByCollection("scalp");

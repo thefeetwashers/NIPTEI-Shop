@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getProduct } from "@/lib/products";
-import { ProductCard } from "@/app/components/product-card";
+import { ProductCard } from "@/components/ProductCard";
 
 const ROWS: Array<[string, string, string[]]> = [
   ["Buildup — product / sebum buildup, scalp suffocation", "Purifying Scalp Scrub", ["care-scalp-scrub"]],
@@ -17,7 +17,9 @@ export default function ProblemsPage() {
     <section><div className="container">
       <h1>Shop by Your Problem</h1>
       <p><strong>One Problem. One Solution. One Product That Does the Job.</strong></p>
+      <p><strong>Our Honest Promise:</strong> we do not sell a one-size-fits-all magic bottle.</p>
       <p>Education only — never a diagnosis or a cure. If a scalp condition worries you, see a doctor / dermatologist / trichologist.</p>
+      <p>All products below are Price coming soon — preorder / waitlist only.</p>
       {ROWS.map(([problem, solution, slugs]) => (
         <div key={problem} className="card">
           <h2>{problem}</h2>

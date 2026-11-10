@@ -1,4 +1,4 @@
-import HairLetterForm from "@/app/components/hair-letter-form";
+import HairLetterForm from "@/components/HairLetterForm";
 
 const ISSUES = [
   ["1 — Your Scalp Is Skin Too", "Why scalp care is skin care, and what that changes about your routine."],

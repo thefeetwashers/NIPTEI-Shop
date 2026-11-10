@@ -1,4 +1,11 @@
+import Link from "next/link";
+import { ProductCard } from "@/components/ProductCard";
+import { getProduct } from "@/lib/products";
+
 export default function HairLossPage() {
+  const rootRenewal = getProduct("care-root-renewal-elixir");
+  const serum = getProduct("hair-growth-serum");
+  const routine = [rootRenewal, serum].filter((p): p is NonNullable<typeof p> => Boolean(p));
   return (
     <section><div className="container">
       <h1>Understanding Hair Loss</h1>
@@ -13,7 +20,11 @@ export default function HairLossPage() {
         <p><strong>Cannot:</strong> cure baldness, regrow hair, or treat a medical condition. NIPTEI never makes those claims.</p>
         <p>Compliant language we use: “Supports a healthy scalp ecosystem”, “Reduces breakage and shedding”, “Improves the appearance of hair density and thickness”.</p>
       </div>
-      <p>For thinning, our quiz routes to a lightweight routine first — Root Renewal before heavy products. Take the <a href="/quiz">Hair Quiz</a> to find yours.</p>
+      <div className="card"><h2>The routine for thinning</h2>
+        <p>For thinning, our quiz routes to a lightweight routine first — Root Renewal before heavy products.</p>
+      </div>
+      <div className="grid">{routine.map((p) => <ProductCard key={p.slug} p={p} />)}</div>
+      <p>Take the <Link href="/quiz">Hair Quiz</Link> to find yours.</p>
     </div></section>
   );
 }

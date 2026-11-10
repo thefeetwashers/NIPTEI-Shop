@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { productsByCollection } from "@/lib/products";
-import { ProductGrid } from "@/app/components/product-card";
+import { ProductGrid } from "@/components/ProductCard";
 
 const INGREDIENTS: Array<[string, string, string]> = [
   ["Mongongo — Schinziophyton rautanenii", "Limited, promising hair-fiber evidence", "A 2025 lab study of mongongo-derived fatty-acid ethyl esters improved surface coverage and gloss. It did not establish hair growth."],
@@ -29,6 +29,8 @@ export default function BotanicalsPage() {
       <h1>Rare Botanicals — Beyond Ordinary Oils</h1>
       <p><strong>Rare oils. Thoughtful botanical science. Hair care for every generation.</strong></p>
       <p>Go beyond ordinary coconut, argan, rosemary and castor oil. Two ranges: <strong>NIPTEI Botanical Reserve — Adults</strong> and <strong>NIPTEI Little Botanicals — Children</strong> (ages 4–12 first). Both share black / emerald / gold / ivory; children’s use softer colours (soft sage, ivory, pale peach, muted lavender) and friendlier illustrations.</p>
+      <p>For Adults and Children — plus Men, Teens 13–17, New Mums, Sensitive Scalp, Silver &amp; Grey, and Pets (pet-safe only).</p>
+      <p>All botanical products are In Development / preorder — Price coming soon.</p>
       <div className="warning"><strong>Honest evidence:</strong> These ingredients are not all equally supported by research. Reviews of herbal hair remedies highlight promising possibilities but also emphasize small studies, inconsistent formulas and insufficient clinical evidence. Traditional use and promising lab research are NOT proven to grow human hair. The best early commercial promise is cosmetic performance, not hair growth.</div>
       <h2>Ingredient directory — with honest evidence ratings</h2>
       <table><thead><tr><th>Ingredient</th><th>Evidence</th><th>What we know</th></tr></thead><tbody>{INGREDIENTS.map(([n, e, k]) => <tr key={n}><td>{n}</td><td>{e}</td><td>{k}</td></tr>)}</tbody></table>
@@ -37,11 +39,14 @@ export default function BotanicalsPage() {
       <h2>Claims we avoid — without a drug pathway</h2>
       <p>“Regrows hair” · “Reverses baldness” · “Stops alopecia” · “Stimulates hair follicles” · “Treats dandruff, eczema, psoriasis, or scalp infections” · “Prevents hair loss”. The FDA identifies hair-growth / hair-loss claims as potentially drug claims.</p>
       <h2>The 15 Rare Botanicals</h2>
+      <p>Black Seed, Pracaxi, Mongongo / Desert Elixir, Amla, Bhringraj, Marula, Kalahari Melon, Fenugreek, Ginseng, Rice Bran, Mafura, Green Tea, Broccoli Seed (silicone alternative), Shikakai cleanser, Black Currant omega elixir.</p>
       <ProductGrid items={oils} />
       <h2>6 Treatment Systems — proposed concepts, not proven treatments for hair loss</h2>
       <ProductGrid items={systems} />
       <h2>Signature Collection — top 5</h2>
       <p>NIPTEI Pumpkin Seed Oil (preliminary human research in pattern hair loss — more studies needed), Black Seed Elixir, Pracaxi Silk Oil, Bhringraj Herbal Elixir, African Moisture Butter.</p>
+      <h2>5 priorities</h2>
+      <p>Mongongo Silk Shield, Mafura Hair Butter, Amla + Rice Silk Mask, Little Botanicals Easy Comb Spray, Little Botanicals Soft Curl Conditioner.</p>
       <h2>Botanical Reserve — Adults</h2>
       <p>Launch with 3 adult + 3 children’s products, not all 12 at once. Working names — not trademark-cleared.</p>
       <ProductGrid items={reserve} />
