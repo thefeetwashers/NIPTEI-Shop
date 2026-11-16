@@ -45,11 +45,20 @@ nav.main { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
 nav.main a { color: #fff; text-decoration: none; font-size: 14px; }
 nav.main a:hover { color: var(--gold-light); }
 
-/* Dropdowns (CSS <details>, no JS needed) — work on desktop and phone width */
+/* Dropdowns — same look as the old CSS <details> menus, now driven by the
+   NavDropdown client component so only one menu opens at a time and menus
+   close on Escape / click outside. Work on desktop and phone width. */
 .nav-dropdown { position: relative; }
 .nav-dropdown summary { color: #fff; cursor: pointer; font-size: 14px; list-style: none; }
 .nav-dropdown summary:hover { color: var(--gold-light); }
 .nav-dropdown summary::-webkit-details-marker { display: none; }
+.nav-dropdown .nav-summary {
+  background: none; border: 0; padding: 0; margin: 0;
+  color: #fff; cursor: pointer; font-size: 14px; font-family: inherit;
+}
+.nav-dropdown .nav-summary:hover { color: var(--gold-light); }
+.nav-dropdown .nav-summary.light { color: var(--emerald); font-weight: 700; }
+.nav-dropdown .nav-summary.light:hover { color: var(--emerald); }
 .nav-menu {
   position: absolute; top: 100%; left: 0;
   background: #111; border: 1px solid var(--gold); border-radius: 6px;
@@ -67,6 +76,9 @@ nav.main a:hover { color: var(--gold-light); }
 }
 /* "More" sits at the right edge: open its menu leftwards so it never overflows the viewport */
 nav.main .nav-dropdown:last-of-type .nav-menu { left: auto; right: 0; }
+
+/* Anchor targets sit below the sticky header when jumped to */
+h2[id] { scroll-margin-top: 84px; }
 
 /* ---- Hero (exact artifact section) ---- */
 .hero-artifact {
@@ -144,7 +156,7 @@ footer.site span { display: block; padding: 3px 0; font-size: 14px; }
   .header-row { flex-wrap: wrap; }
   .brand { font-size: 22px; }
   nav.main { gap: 10px; }
-  nav.main a, .nav-dropdown summary { font-size: 13px; }
+  nav.main a, .nav-dropdown summary, .nav-dropdown .nav-summary { font-size: 13px; }
   .hero h1 { font-size: 32px; }
   body { overflow-x: hidden; }
 }

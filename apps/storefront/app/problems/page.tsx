@@ -4,7 +4,7 @@ import { ProductCard } from "@/components/ProductCard";
 
 const ROWS: Array<[string, string, string[]]> = [
   ["Buildup — product / sebum buildup, scalp suffocation", "Purifying Scalp Scrub", ["care-scalp-scrub"]],
-  ["Itch / flaking — severe flaking and irritation", "Microbiome-Balancing Drop Serum / Scalp-Resurfacing & Growth Serum", ["scalp-resurfacing-growth-serum"]],
+  ["Itch / flaking — severe flaking and irritation", "Microbiome-Balancing Drop Serum / Scalp-Resurfacing & Growth Serum", ["scalp-precision-serum"]],
   ["Damaged / brittle — over-processed hair", "Molecular Hair Repair Mask", ["nourishing-hair-mask"]],
   ["Thinning — wider part, more scalp showing, excessive shedding", "Root Renewal Scalp Stimulating Elixir + Hair Growth Serum", ["care-root-renewal-elixir", "hair-growth-serum"]],
   ["Dry / dull", "Nourishing Hair Mask + Argan Oil Shampoo + Argan Oil Conditioner", ["nourishing-hair-mask", "argan-oil-shampoo", "argan-oil-conditioner"]],

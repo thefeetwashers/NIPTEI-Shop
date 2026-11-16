@@ -14,7 +14,7 @@ export default function QuizPage() {
   const [waitlistFor, setWaitlistFor] = useState<string | null>(null);
   const [step, setStep] = useState(0); // 0=Q1, 1=Q2, 2=Q3, 3=Q4, 4=done
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const serum = getProduct("scalp-resurfacing-growth-serum");
+  const serum = getProduct("scalp-precision-serum");
 
   if (waitlistFor) {
     return (
@@ -42,7 +42,7 @@ export default function QuizPage() {
           <p>{serum?.description}</p>
           <p className="price soon">Price coming soon</p>
           <p>In Development — Join Waitlist.</p>
-          <p><Link href="/products/scalp-resurfacing-growth-serum">View the serum →</Link></p>
+          <p><Link href="/products/scalp-precision-serum">View the serum →</Link></p>
         </div>
         <p>Who it is for: {who}. Scalp: {answers.q2}. Density: {answers.q3}. Routine: {answers.q4}.</p>
         <p><strong>Name Your Routine:</strong> give your matched routine a name — it is yours.</p>

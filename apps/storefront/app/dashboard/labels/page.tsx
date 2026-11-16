@@ -4,7 +4,7 @@ import { PRODUCTS, LABEL_CONTACT_LINE } from "@/lib/products";
 const LABEL_GROUPS: Array<[string, string[]]> = [
   ["Collection A — Shampoo & Conditioner", ["strengthen-restore-shampoo", "anti-hair-loss-shampoo", "argan-oil-shampoo", "argan-oil-conditioner"]],
   ["Collection B — Hair Growth & Scalp Oils", ["pumpkin-seed-oil", "herbal-hair-oil", "rosemary-hair-oil", "tea-tree-hair-oil", "biotin-hair-oil", "onion-hair-growth-oil", "baobab-oil"]],
-  ["Collection C — Serums & Treatments", ["hair-growth-serum", "scalp-resurfacing-growth-serum", "care-root-renewal-elixir", "black-rice-hair-growth-spray"]],
+  ["Collection C — Serums & Treatments", ["hair-growth-serum", "scalp-precision-serum", "care-root-renewal-elixir", "black-rice-hair-growth-spray"]],
   ["Collection D — Curly & Natural", ["curl-cream", "nourishing-hair-mask", "care-leave-in-conditioner", "care-hair-butter"]],
   ["Kids", ["kids-gentle-tear-free-shampoo", "kids-detangling-spray", "kids-curl-cream", "kids-scalp-oil"]],
   ["Pet", ["pet-shampoo-dogs", "pet-shampoo-cats", "pet-coat-skin-oil", "pet-deshedding-conditioner", "pet-paw-nose-balm", "pet-detangling-spray"]],

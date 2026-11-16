@@ -5,7 +5,7 @@ import { getProduct } from "@/lib/products";
 // Request a Quote — owner form: send a quote request to a supplier.
 // Nothing is sent automatically — the owner reviews and sends from
 // nipteiapp@gmail.com. Supplier replies land in the Manufacturer Comparison Tracker.
-const SERUM = getProduct("scalp-resurfacing-growth-serum");
+const SERUM = getProduct("scalp-precision-serum");
 
 export default function QuoteRequestPage() {
   const [msg, setMsg] = useState("");
