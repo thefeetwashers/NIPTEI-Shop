@@ -24,6 +24,8 @@ const GROUPS: Array<[Collection, string]> = [
   ["botanical", "Rare Botanicals"],
   ["reserve", "Botanical Reserve — Adults"],
   ["little", "Little Botanicals — Children"],
+  ["bbn", "BB Natural Co — Dropshipping · Private Label"],
+  ["drhc", "DR.HC Organics — Dropshipping · Private Label"],
 ];
 
 export default async function CollectionPage({ searchParams }: { searchParams?: Promise<{ for?: string }> }) {
