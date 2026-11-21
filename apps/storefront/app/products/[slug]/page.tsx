@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProduct, formatPrice, LABEL_CONTACT_LINE, PREORDER_TERMS } from "@/lib/products";
+import { roleFor } from "@/lib/ingredients";
 import { SWAP_PROMISE_TERMS } from "@/lib/pricing";
 import HairLetterForm from "@/components/HairLetterForm";
 
@@ -28,10 +29,22 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       </div>
       <div className="card"><h2>About this product</h2><p>{p.description}</p>
         <p><strong>Origin:</strong> {p.originVerified ? (p.madeIn ? `${p.madeIn}. Verified with documents on file.` : "Verified with documents on file.") : "Origin: not yet documented — verification pending"}</p>
-        <p><strong>Ingredient origin:</strong> {p.ingredientOrigin ? `${p.ingredientOrigin}. ` : ""}Jamaican Black Castor Oil is an ingredient, never a manufacturing location.</p>
+        <p><strong>Ingredient origin:</strong> {p.ingredientOrigin ? `${p.ingredientOrigin}. ` : ""}Black castor oil is an ingredient, never a manufacturing location.</p>
         {p.forHairTypes && <p><strong>For:</strong> {p.forHairTypes.join(", ")}</p>}
         {p.notFor && <p><strong>Not for:</strong> {p.notFor}</p>}
       </div>
+      {p.collection === "biblical" && (
+        <div className="card"><h2>What&apos;s Inside &amp; Why</h2>
+          <p>Every ingredient has a job. Here is what is inside this bottle and what it does for your hair.</p>
+          <ul>
+            {p.ingredientOrigin.split(" · ").map((ing) => (
+              <li key={ing}><strong>{ing}</strong>{roleFor(ing) ? ` — ${roleFor(ing)}` : ""}</li>
+            ))}
+          </ul>
+          <p><strong>Made to order:</strong> your bottle is infused fresh after you reserve it and ships in 10–14 business days. Pre-order only — good things take time.</p>
+          <p><Link href="/#watch">Watch the Wash-Day Ritual →</Link></p>
+        </div>
+      )}
       <div className="card"><h2>See how this price is made</h2>
         <p><strong>Price coming soon.</strong> Until the owner sets a real price and enters real costs, there is no live price for this product.</p>
         <p>When it is priced, the breakdown will show: Supply + Packaging + Shipping + Marketing CPA + $0.30, divided by ((1 − Target Margin %) − Merchant Processing %). No swap buffer is ever added — the customer pays the exchange shipping fee separately. <Link href="/pricing">Try the Transparent Pricing Calculator →</Link></p>

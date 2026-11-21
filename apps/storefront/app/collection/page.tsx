@@ -26,14 +26,15 @@ const GROUPS: Array<[Collection, string]> = [
   ["little", "Little Botanicals — Children"],
   ["bbn", "BB Natural Co — Dropshipping · Private Label"],
   ["drhc", "DR.HC Organics — Dropshipping · Private Label"],
+  ["biblical", "Biblical Botanicals — Ancient Oils · Modern Actives"],
 ];
 
 export default async function CollectionPage({ searchParams }: { searchParams?: Promise<{ for?: string }> }) {
   const sp = await searchParams;
   const filter = sp?.for;
-  const groups = filter === "women" ? GROUPS.filter(([k]) => ["core", "luxury", "hero3", "scalp", "complete", "firsts", "botanical", "reserve", "bundles", "gift", "ritual"].includes(k))
-    : filter === "men" ? GROUPS.filter(([k]) => k === "men" || k === "bundles")
-    : filter === "kids" ? GROUPS.filter(([k]) => k === "kids" || k === "little" || k === "bundles")
+  const groups = filter === "women" ? GROUPS.filter(([k]) => ["core", "luxury", "hero3", "scalp", "complete", "firsts", "botanical", "reserve", "bundles", "gift", "ritual", "biblical"].includes(k))
+    : filter === "men" ? GROUPS.filter(([k]) => k === "men" || k === "biblical" || k === "bundles")
+    : filter === "kids" ? GROUPS.filter(([k]) => k === "kids" || k === "little" || k === "biblical" || k === "bundles")
     : filter === "pets" ? GROUPS.filter(([k]) => k === "pet")
     : GROUPS;
   return (
